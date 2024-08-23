@@ -15,8 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from .views import *
 
 urlpatterns = [
+
+    path('', index),
+    path('manager/', include('manager.urls')),
     path('admin/', admin.site.urls),
+
+
 ]
+
+
+"""
+manager -> 
+    Who book table
+    CRUD operation for menu
+    CRUD for event in cafe
+"""
