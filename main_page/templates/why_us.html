@@ -1,0 +1,23 @@
+<section id="why-us" class="why-us">
+    <div class="container">
+        <div class="section-title">
+            <h2>Why choose <span>Our Restaurant</span></h2>
+        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+    </div>
+        <div class="row">
+            {% for block in why_us_blocks %}
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="box">
+                    {% if block.position < 10 %}
+                        <span>0{{ forloop.counter }}</span>
+                    {% else %}
+                        <span>{{ forloop.counter }}</span>
+                    {% endif %}
+                        <h4>{{ block.heading }}</h4>
+                    <p>{{ block.text }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

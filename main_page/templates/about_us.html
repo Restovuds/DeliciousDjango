@@ -1,0 +1,41 @@
+{% load static %}
+
+<section id="about" class="about">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-lg-5 align-items-stretch video-box" style='background-image: url({% static "assets/img/about.jpg" %});'>
+            <a href="{{ about_us_video.text }}" class="venobox play-btn mb-4" data-vbtype="video"
+               data-autoplay="true"></a>
+            </div>
+
+                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+                    <div class="content">
+                    {% for text in about_us_texts %}
+
+                            {% if text.is_heading %}
+                                <h3>{{ text.text }}</h3>
+                            {% endif %}
+                            {% if text.is_paragraph %}
+                                <p>
+                                    {{ text.text }}
+                                </p>
+                            {% endif %}
+                            {% if text.is_unordered_list %}
+                                <ul>
+                                    <li>
+                                        <i class="bx bx-check-double"></i>
+                                        {{ text.text }}
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                    {% endfor %}
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
