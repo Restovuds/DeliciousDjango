@@ -121,3 +121,46 @@ class HeroSlider(models.Model):
         ordering = ('-is_visible', 'position', )
         verbose_name = 'Hero Slider'
         verbose_name_plural = 'Hero Sliders'
+
+
+# Events
+class Event:
+    def get_file_name(self, filename: str):
+        ext = filename.strip().split('.')[-1]
+        filename = f'{uuid.uuid4()}.{ext}'
+        return os.path.join('images/event/', filename)
+
+    name = models.CharField(max_length=50, unique=True)
+    price = models.SmallIntegerField()
+    image = models.ImageField(upload_to=get_file_name, blank=False)
+    position = models.SmallIntegerField(unique=True)
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.name} [{self.position}]'
+
+    class Meta:
+        ordering = ('is_visible', 'position',)
+        verbose_name = 'Event'
+        verbose_name_plural = 'Events'
+
+
+
+# Event texts
+class EventText(models.Model):
+    text = models.TextField(max_length=500)
+    is_visible = models.BooleanField(default=True)
+    position = models.SmallIntegerField(unique=True)
+    is_paragraph = models.BooleanField(default=True)
+    is_unordered_list = models.BooleanField(default=False)
+
+    def __str__(self):
+        if len(self.text) > 30:
+            return f'{self.text[0:30]}... [{self.position}]'
+        else:
+            return f'{self.text} [{self.position}]'
+
+    class Meta:
+        ordering = ('is_visible', 'position',)
+        verbose_name = 'Event Text'
+        verbose_name_plural = 'Event Texts'
