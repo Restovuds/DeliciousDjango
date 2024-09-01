@@ -4,7 +4,7 @@ from django.template.defaultfilters import default
 from django.utils import timezone
 
 
-
+# book a table
 class UserReservation(models.Model):
     mobile_re = RegexValidator(regex=r'^(\d{3}[- .]?){2}\d{4}$', message='Wrong phone number')
 
@@ -21,6 +21,23 @@ class UserReservation(models.Model):
 
     def __str__(self):
         return f'New receipt from {self.name}, {self.phone} - {self.time_of_receipt}'
+
+    class Meta:
+        ordering = ('time_of_receipt',)
+
+
+# contact us
+class UserContact(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField(blank=False)
+    subject = models.CharField(max_length=120, blank=False)
+    message = models.TextField(max_length=500, blank=False)
+
+    is_processed = models.BooleanField(default=False)
+    time_of_receipt = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'New application from {self.name}, {self.email} - {self.time_of_receipt}'
 
     class Meta:
         ordering = ('time_of_receipt',)

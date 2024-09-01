@@ -2,7 +2,7 @@ from itertools import repeat
 
 from django.shortcuts import render
 from .models import Dish, DishCategory, WhyUsBlock, AboutUsText, Gallery, HeroSlider, Event, EventText
-from .forms import UserReservationForm
+from .forms import UserReservationForm, UserContactForm
 
 def main_page_view(request):
     categories = DishCategory.objects.filter(is_visible=True)
@@ -17,6 +17,7 @@ def main_page_view(request):
     event_texts = EventText.objects.filter(is_visible=True)
 
     user_reservation = UserReservationForm()
+    user_contact = UserContactForm()
 
     return render(request, 'main_page.html', context={
         'categories': categories,
@@ -31,4 +32,5 @@ def main_page_view(request):
         'event_texts': event_texts,
 
         'user_reservation': user_reservation,
+        'user_contact': user_contact
     })
