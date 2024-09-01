@@ -1,0 +1,33 @@
+<section id="chefs" class="chefs">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Our Proffesional <span>Chefs</span></h2>
+            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+
+        <div class="row">
+            {% for chef in chefs %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="member">
+                        <div class="pic">
+                            <img src={{ chef.photo.url }} class="img-fluid" alt="{{ chef.name }} photo">
+                        </div>
+                        <div class="member-info">
+                            <h4>{{ chef.name }}</h4>
+                            <span>{{ chef.rank }}</span>
+                            <div class="social">
+                                {% for link in chef_social %}
+                                    {% if link.chef.pk == chef.pk %}
+                                        <a href={{ link.link.url }}><i class="bi bi-{{ link.social_name }}"></i></a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>

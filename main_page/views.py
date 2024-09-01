@@ -1,7 +1,7 @@
 from itertools import repeat
 
 from django.shortcuts import render
-from .models import Dish, DishCategory, WhyUsBlock, AboutUsText, Gallery, HeroSlider, Event, EventText
+from .models import Dish, DishCategory, WhyUsBlock, AboutUsText, Gallery, HeroSlider, Event, EventText, Chef, ChefSocial
 from .forms import UserReservationForm, UserContactForm
 
 def main_page_view(request):
@@ -15,6 +15,8 @@ def main_page_view(request):
     hero_sliders = HeroSlider.objects.filter(is_visible=True)
     events = Event.objects.filter(is_visible=True)
     event_texts = EventText.objects.filter(is_visible=True)
+    chefs = Chef.objects.filter(is_visible=True)
+    chef_social = ChefSocial.objects.filter(is_visible=True)
 
     user_reservation = UserReservationForm()
     user_contact = UserContactForm()
@@ -30,6 +32,8 @@ def main_page_view(request):
         'hero_sliders': hero_sliders,
         'events': events,
         'event_texts': event_texts,
+        'chefs': chefs,
+        'chef_social': chef_social,
 
         'user_reservation': user_reservation,
         'user_contact': user_contact

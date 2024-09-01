@@ -165,3 +165,42 @@ class EventText(models.Model):
         ordering = ('event' ,'is_visible', 'position',)
         verbose_name = 'Event Text'
         verbose_name_plural = 'Event Texts'
+
+
+# chefs
+class Chef(models.Model):
+    def get_file_name(self, filename: str):
+        ext = filename.strip().split('.')[-1]
+        filename = f'{uuid.uuid4()}.{ext}'
+        return os.path.join('images/chef/', filename)
+
+    name = models.CharField(max_length=50)
+    rank = models.CharField(max_length=20)
+    photo = models.ImageField(upload_to=get_file_name, blank=False)
+    position = models.SmallIntegerField(unique=True)
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'[{self.position}] {self.name} - {self.rank}'
+
+    class Meta:
+        verbose_name = 'Chef'
+        verbose_name_plural = 'Chefs'
+        ordering = ('is_visible', 'position',)
+
+
+# chefs social
+class ChefSocial(models.Model):
+    social_name = models.CharField(max_length=20)
+    link = models.URLField(max_length=300)
+    chef = models.ForeignKey(Chef, on_delete=models.CASCADE)
+    position = models.SmallIntegerField()
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.chef.name} - {self.social_name}'
+
+    class Meta:
+        ordering = ('-is_visible', 'position',)
+        verbose_name = 'Chefs Social'
+        verbose_name_plural = 'Chefs Socials'
