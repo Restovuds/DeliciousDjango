@@ -30,7 +30,11 @@
                                     <p>{{ dish.description }}</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="{{ dish.photo.url }}" alt="" class="img-fluid">
+                                    {% if dish.photo %}
+                                        <img src="{{ dish.photo.url }}" alt="" class="img-fluid">
+                                    {% else %}
+                                        <img src="" alt="Please load the dish photo" class="img-fluid">
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

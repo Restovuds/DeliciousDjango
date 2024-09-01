@@ -124,7 +124,7 @@ class HeroSlider(models.Model):
 
 
 # Events
-class Event:
+class Event(models.Model):
     def get_file_name(self, filename: str):
         ext = filename.strip().split('.')[-1]
         filename = f'{uuid.uuid4()}.{ext}'
@@ -150,17 +150,18 @@ class Event:
 class EventText(models.Model):
     text = models.TextField(max_length=500)
     is_visible = models.BooleanField(default=True)
-    position = models.SmallIntegerField(unique=True)
+    position = models.SmallIntegerField()
     is_paragraph = models.BooleanField(default=True)
     is_unordered_list = models.BooleanField(default=False)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
     def __str__(self):
         if len(self.text) > 30:
-            return f'{self.text[0:30]}... [{self.position}]'
+            return f'[{self.event.name}] {self.text[0:30]}... [{self.position}]'
         else:
             return f'{self.text} [{self.position}]'
 
     class Meta:
-        ordering = ('is_visible', 'position',)
+        ordering = ('event' ,'is_visible', 'position',)
         verbose_name = 'Event Text'
         verbose_name_plural = 'Event Texts'
