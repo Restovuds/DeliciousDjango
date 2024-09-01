@@ -1,0 +1,32 @@
+<section id="testimonials" class="testimonials">
+    <div class="container position-relative">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+            {% for review in reviews %}
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src={{ review.photo.url }} class="testimonial-img" alt="">
+                        <h3>{{ review.name }}</h3>
+                        <h4>{{ review.worked_at }}</h4>
+
+                        <div class="stars">
+                            {% for i in "0123456789"|slice:review.rating %}
+                                <i class="bi bi-star-fill"></i>
+                            {% endfor %}
+                        </div>
+
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            {{ review.text }}
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section>

@@ -1,5 +1,6 @@
 import uuid, os
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 #  Dish category
@@ -201,6 +202,35 @@ class ChefSocial(models.Model):
         return f'{self.chef.name} - {self.social_name}'
 
     class Meta:
-        ordering = ('-is_visible', 'position',)
+        ordering = ('is_visible', 'position',)
         verbose_name = 'Chefs Social'
         verbose_name_plural = 'Chefs Socials'
+
+
+# reviews
+class Review(models.Model):
+    def get_file_name(self, filename: str):
+        ext = filename.strip().split('.')[-1]
+        filename = f'{uuid.uuid4()}.{ext}'
+        return os.path.join('images/review/', filename)
+
+    photo = models.ImageField(upload_to=get_file_name, blank=False, default='')
+    name = models.CharField(max_length=50)
+    worked_at = models.CharField(max_length=50)
+    rating = models.SmallIntegerField(default=5, validators=[
+        MinValueValidator(1),
+        MaxValueValidator(5)
+    ])
+    text = models.TextField(max_length=500)
+    position = models.SmallIntegerField(unique=True)
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'[{self.position}] {self.name} - {self.rating} stars'
+
+    class Meta:
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'
+        ordering = ('position',)
+
+
