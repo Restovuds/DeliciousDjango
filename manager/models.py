@@ -1,7 +1,8 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from django.template.defaultfilters import default
+
 from django.utils import timezone
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # book a table
@@ -13,7 +14,7 @@ class UserReservation(models.Model):
     phone = models.CharField(max_length=15, validators=[mobile_re])
     date = models.DateField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
-    number_of_people = models.SmallIntegerField(default=1)
+    number_of_people = models.SmallIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(10)])
     message = models.TextField(max_length=500, blank=False)
 
     is_processed = models.BooleanField(default=False)

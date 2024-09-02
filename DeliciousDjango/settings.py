@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "manager.apps.ManagerConfig",
-    "main_page.apps.MainPageConfig"
+    "main_page.apps.MainPageConfig",
+    'account.apps.AccountConfig'
 
 ]
 

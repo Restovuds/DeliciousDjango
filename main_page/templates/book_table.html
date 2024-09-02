@@ -8,6 +8,7 @@
 
         <form action="" method="post" role="form" class="php-email-form">
             {% csrf_token %}
+            <input type="hidden" name="form_type" value="book_a_table">
             <div class="row">
                 <div class="col-lg-4 col-md-6 form-group">
                     {{ user_reservation.name }}
@@ -39,8 +40,8 @@
                 <div class="validate"></div>
             </div>
             <div class="mb-3">
-                <div class="loading">Loading</div>
                 <div class="error-message"></div>
+
                 <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
             </div>
             <div class="text-center"><button type="submit">Send Message</button></div>

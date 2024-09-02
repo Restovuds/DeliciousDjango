@@ -42,6 +42,8 @@
         </div>
 
         <form action="" method="post" role="form" class="php-email-form">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="contact_us">
           <div class="row">
             <div class="col-md-6 form-group">
               {{ user_contact.name }}
