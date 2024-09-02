@@ -1,0 +1,44 @@
+{% extends 'manager.html' %}
+
+{% block main_content %}
+
+    <section id="reserves">
+    <div class="container">
+        {% for reservation in reservations %}
+            <div class="col-md-11 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-3">
+                        <a href="" class="book-a-table-btn">link</a>
+                    </div>
+                    <div class="col-md-3">
+                        {{ reservation.name }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ reservation.email }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ reservation.phone }}
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-md-4">
+                        Date: {{ reservation.date|date:'d.m.Y' }}
+                    </div>
+                    <div class="col-md-4">
+                        Time: {{ reservation.time|time:'H:s' }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ reservation.number_of_people }} peoples
+                    </div>
+                </div>
+                <div class="row  pt-lg-4">
+                    <div class="col-md-12">
+                        {{ reservation.message }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </section>
+
+{% endblock %}

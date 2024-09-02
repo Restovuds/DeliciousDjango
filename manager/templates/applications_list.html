@@ -1,0 +1,35 @@
+{% extends 'manager.html' %}
+
+{% block main_content %}
+
+    <section id="reserves">
+    <div class="container">
+        {% for application in applications %}
+            <div class="col-md-11 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-3">
+                        <a href="" class="book-a-table-btn">link</a>
+                    </div>
+                    <div class="col-md-3">
+                        {{ application.name }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ application.email }}
+                    </div>
+                </div>
+                <div class="row pt-lg-4">
+                    <div class="col-md-12">
+                        {{ application.subject }}
+                    </div>
+                </div>
+                <div class="row pt-lg-4">
+                    <div class="col-md-12">
+                        {{ application.message }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </section>
+
+{% endblock %}
