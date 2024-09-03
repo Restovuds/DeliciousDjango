@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -21,7 +23,7 @@ class UserReservation(models.Model):
     time_of_receipt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'New receipt from {self.name}, {self.phone} - {self.time_of_receipt}'
+        return f'New receipt from {self.name}, {self.phone} - {self.time_of_receipt.strftime("%d.%m.%Y %H:%M")}'
 
     class Meta:
         ordering = ('time_of_receipt',)
@@ -38,7 +40,7 @@ class UserContact(models.Model):
     time_of_receipt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'New application from {self.name}, {self.email} - {self.time_of_receipt}'
+        return f'New application from {self.name}, {self.email} - {self.time_of_receipt.strftime("%d.%m.%Y %H:%M")}'
 
     class Meta:
         ordering = ('time_of_receipt',)

@@ -22,7 +22,7 @@ from account.views import user_registration, user_login, user_logout
 
 urlpatterns = [
 
-    path('', include('main_page.urls')),
+    path('', include('main_page.urls'), name='main_page'),
 
 
     path('admin/', admin.site.urls),

@@ -1,15 +1,12 @@
-{% extends 'manager.html' %}
+{% extends 'index.html' %}
 
 {% block main_content %}
-
+    <div style="height: 120px; background: rgba(26, 24, 22, 0.85)"></div>
     <section id="reserves">
     <div class="container">
         {% for reservation in reservations %}
-            <div class="col-md-11 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
                 <div class="row p-1">
-                    <div class="col-md-3">
-                        <a href="" class="book-a-table-btn">link</a>
-                    </div>
                     <div class="col-md-3">
                         {{ reservation.name }}
                     </div>
@@ -19,21 +16,8 @@
                     <div class="col-md-3">
                         {{ reservation.phone }}
                     </div>
-                </div>
-                <div class="row p-1">
-                    <div class="col-md-4">
-                        Date: {{ reservation.date|date:'d.m.Y' }}
-                    </div>
-                    <div class="col-md-4">
-                        Time: {{ reservation.time|time:'H:s' }}
-                    </div>
-                    <div class="col-md-4">
-                        {{ reservation.number_of_people }} peoples
-                    </div>
-                </div>
-                <div class="row  pt-lg-4">
-                    <div class="col-md-12">
-                        {{ reservation.message }}
+                    <div class="col-3">
+                        <a href="{% url 'manager:reservation' reservation_id=reservation.pk %}" class="book-a-table-btn" style="margin-left: 100px">View</a>
                     </div>
                 </div>
             </div>

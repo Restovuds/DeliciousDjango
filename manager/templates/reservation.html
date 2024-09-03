@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block main_content %}
+    <div style="height: 120px; background: rgba(26, 24, 22, 0.85)"></div>
+    <section id="reserves">
+    <div class="container">
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-3">
+                        Reservator: {{ reservation.name }}
+                    </div>
+                    <div class="col-md-3">
+                        Email: {{ reservation.email }}
+                    </div>
+                    <div class="col-md-3">
+                        Phone: {{ reservation.phone }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-3">
+                        Date: {{ reservation.date }}
+                    </div>
+                    <div class="col-md-3">
+                        Time: {{ reservation.time }}
+                    </div>
+                    <div class="col-md-3">
+                        Peoples: {{ reservation.number_of_people }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-12">
+                        Text: {{ reservation.message }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-12">
+                        <button>Make Processed</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+
+{% endblock %}

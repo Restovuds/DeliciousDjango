@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block main_content %}
+    <div style="height: 120px; background: rgba(26, 24, 22, 0.85)"></div>
+    <section id="reserves">
+    <div class="container">
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-6">
+                        Applicient: {{ application.name }}
+                    </div>
+                    <div class="col-md-6">
+                        Email: {{ application.email }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-12">
+                        Subject: {{ application.subject }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-12">
+                        Text: {{ application.message }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+                <div class="row p-1">
+                    <div class="col-md-12">
+                        <button>Make Processed</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+
+{% endblock %}

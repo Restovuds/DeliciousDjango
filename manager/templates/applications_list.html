@@ -1,30 +1,21 @@
-{% extends 'manager.html' %}
+{% extends 'index.html' %}
 
 {% block main_content %}
-
+    <div style="height: 120px; background: rgba(26, 24, 22, 0.85)"></div>
     <section id="reserves">
     <div class="container">
         {% for application in applications %}
-            <div class="col-md-11 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
+            <div class="col-md-12 col-md-offset-1 p-3 mb-lg-1" style="background: #fff8f1">
                 <div class="row p-1">
-                    <div class="col-md-3">
-                        <a href="" class="book-a-table-btn">link</a>
-                    </div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-4">
                         {{ application.name }}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         {{ application.email }}
                     </div>
-                </div>
-                <div class="row pt-lg-4">
-                    <div class="col-md-12">
-                        {{ application.subject }}
-                    </div>
-                </div>
-                <div class="row pt-lg-4">
-                    <div class="col-md-12">
-                        {{ application.message }}
+                    <div class="col-md-4">
+                        <a href="{% url 'manager:application' application_id=application.pk %}" class="book-a-table-btn">View</a>
                     </div>
                 </div>
             </div>
