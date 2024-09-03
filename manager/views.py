@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.handlers.modwsgi import groups_for_user
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import UserReservation, UserContact
 
 
@@ -52,3 +51,15 @@ def application(request, application_id):
                   context={
                       'application': application_item
                   })
+
+@login_required(login_url='/login/')
+@user_passes_test(is_manager, login_url='/login/')
+def reservation_update(request, reservation_id):
+    UserReservation.objects.filter(pk=reservation_id).update(is_processed=True)
+    return redirect('manager:reservations')
+
+@login_required(login_url='/login/')
+@user_passes_test(is_manager, login_url='/login/')
+def application_update(request, application_id):
+    UserContact.objects.filter(pk=application_id).update(is_processed=True)
+    return redirect('manager:applications')
